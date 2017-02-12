@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/bg_card">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="title"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="0.5"
+		    android:adjustViewBounds="true"
+		    android:contentDescription="hrllo"
+            android:src="@drawable/sampleimage" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingRight="5dp"
+                android:text="TextView" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="date"
+            android:textColor="#7F7F7F"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read more" />
+
+        <WebView
+            android:id="@+id/rss_web_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    
+</LinearLayout>
