@@ -9,10 +9,10 @@ public class RSSLinkData {
 	private static String DOM_NEWS;
 	
 	public RSSLinkData(String link, String author, String image, String news){
-		this.DOM_LINK = link;
-		this.DOM_AUTHOR = author;
-		this.DOM_IMAGE = image;
-		this.DOM_NEWS = news;
+		DOM_LINK = link;
+		DOM_AUTHOR = author;
+		DOM_IMAGE = image;
+		DOM_NEWS = news;
 	}
 	
 }

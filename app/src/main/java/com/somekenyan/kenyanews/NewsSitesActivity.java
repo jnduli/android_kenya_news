@@ -1,6 +1,7 @@
 package com.somekenyan.kenyanews;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -28,6 +29,7 @@ import android.widget.CursorAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 //TODO change this activity to use the maps from RSSLinks.java
 public class NewsSitesActivity extends Activity {	
@@ -52,16 +54,22 @@ public class NewsSitesActivity extends Activity {
 
         setContentView(R.layout.activity_newssites);
 
-        //Set keys = RSSLinks.supported_Sites().keySet();
-        //newsSites = keys.toArray(new String[0]);
-        //newsSites =RSSLinks.supported_Sites().keySet().toArray(new String[0]);
-
         newsSites = RSSLinks.supported_Sites().keySet().toArray(new String[0]);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.newssites_list_item, newsSites);
 
         ListView lv = (ListView) findViewById(R.id.news_sites_list);
         lv.setAdapter(adapter);
 
+        lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tv = (TextView) adapterView.getChildAt(i);
+                Map m = RSSLinks.supported_Sites().get(tv.getText());
+                String [] keys = (String[]) m.keySet().toArray(new String[0]);
+                new AsyncLoadXML().execute(String.valueOf(m.get(keys[0])));
+
+            }
+        });
 /**
 
 		array = new ArrayList<String>();
@@ -70,14 +78,14 @@ public class NewsSitesActivity extends Activity {
             intent.setData(SourcesColumns.CONTENT_URI(2));
         }
 		setContentView(R.layout.grid_sites_view);
-		
+
 		GridView grid = (GridView) findViewById(R.id.gridview);
 		Cursor c = managedQuery(getIntent().getData(), PROJECTION, null, null, null);
 		startManagingCursor(c);
 		NewsSqlAdapter nsa = new NewsSqlAdapter(this, c);
 		grid.setAdapter(nsa);
 		grid.setOnItemClickListener(new OnItemClickListener() {
-
+k
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position,
 					long id) {
@@ -99,9 +107,9 @@ public class NewsSitesActivity extends Activity {
 
 		@Override
 		public void bindView(View view, final Context context, Cursor cursor) {
-			((ImageView) view).setLayoutParams(new GridView.LayoutParams(ImageManipulation.getDeviceWidth(NewsSitesActivity.this),85 ));
+			view.setLayoutParams(new GridView.LayoutParams(ImageManipulation.getDeviceWidth(NewsSitesActivity.this),85 ));
 			((ImageView) view).setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-			((ImageView) view).setPadding(4, 4, 4, 4);
+			view.setPadding(4, 4, 4, 4);
 			view.setFocusable(false);
 			view.setFocusableInTouchMode(false);
 			String imageUrl = cursor.getString(COLUMN_LOGO);
