@@ -1,0 +1,8 @@
+<TextView android:id="@+id/news_sites_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:textAppearanceLarge"
+    android:text="TextView"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

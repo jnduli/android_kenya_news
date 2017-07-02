@@ -1,6 +1,7 @@
 package com.somekenyan.kenyanews.data;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -9,8 +10,9 @@ import java.util.Map;
 
 public class RSSLinks {
     public static Map<String, Map> supported_Sites(){
-        Map<String, Map> supported_sites = new HashMap<String, Map>();
+        Map<String, Map> supported_sites = new LinkedHashMap<String, Map>();
         supported_sites.put("Nation Kenya", nation_createMap());
+        supported_sites.put("Standard Kenya", standard_createMap());
         return supported_sites;
     }
     // NATION.co.ke RSS Links
@@ -25,7 +27,7 @@ public class RSSLinks {
 
     public static String [] NATION_MENU = {"Latest","Politics","Business","Counties","Lifestyle","Sport", "Blogs & Opinions"};
     public static Map<String, String> nation_createMap(){
-        Map<String, String> nationMap = new HashMap<String, String>();
+        Map<String, String> nationMap = new LinkedHashMap<String, String>();
         nationMap.put("Latest", NATION_LATEST);
         nationMap.put("Politics", NATION_POLITICS);
         nationMap.put("Business",NATION_BUSINESS);
@@ -37,6 +39,11 @@ public class RSSLinks {
     }
 
     //TODO Standard Media RSS Links
+    public static Map<String, String> standard_createMap(){
+        Map<String, String> stdMap = new LinkedHashMap<String, String>();
+        stdMap.put("Latest","Links");
+        return stdMap;
+    }
 
 }
 

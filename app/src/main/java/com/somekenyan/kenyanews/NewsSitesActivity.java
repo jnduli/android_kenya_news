@@ -1,10 +1,12 @@
 package com.somekenyan.kenyanews;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 
 import com.somekenyan.kenyanews.RSS.RSSList;
 import com.somekenyan.kenyanews.RSS.RSSParser;
+import com.somekenyan.kenyanews.data.RSSLinks;
 import com.somekenyan.kenyanews.manipulation.ImageManipulation;
 import com.somekenyan.kenyanews.providers.KenyaNewsData.SourcesColumns;
 
@@ -21,10 +23,13 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+//TODO change this activity to use the maps from RSSLinks.java
 public class NewsSitesActivity extends Activity {	
 	private final String [] PROJECTION ={
 			SourcesColumns._ID,
@@ -38,10 +43,27 @@ public class NewsSitesActivity extends Activity {
 	
 	private static final int TAG_URL =1;
 	private ArrayList<String > array;
+
+    private String [] newsSites;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_newssites);
+
+        //Set keys = RSSLinks.supported_Sites().keySet();
+        //newsSites = keys.toArray(new String[0]);
+        //newsSites =RSSLinks.supported_Sites().keySet().toArray(new String[0]);
+
+        newsSites = RSSLinks.supported_Sites().keySet().toArray(new String[0]);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.newssites_list_item, newsSites);
+
+        ListView lv = (ListView) findViewById(R.id.news_sites_list);
+        lv.setAdapter(adapter);
+
+/**
+
 		array = new ArrayList<String>();
 		Intent intent = getIntent();
         if (intent.getData() == null) {
@@ -65,6 +87,7 @@ public class NewsSitesActivity extends Activity {
 				new AsyncLoadXML().execute(array.get(position));	
 			}
 		});
+ **/
 	}
 	
 	
