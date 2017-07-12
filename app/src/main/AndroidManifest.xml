@@ -2,35 +2,43 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.somekenyan.kenyanews"
     android:versionCode="1"
-    android:versionName="0.1" >
+    android:versionName="0.1">
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.somekenyan.kenyanews.NewsSitesActivity"
-            android:label="@string/app_name" >
+            android:name=".NewsSitesActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RSSActivity"></activity>
+        <activity android:name=".FullArticle" />
+        <activity android:name=".NewsIconsActivity" />
+
+        <provider
+            android:name=".providers.KenyaNewsProvider"
+            android:authorities="com.somekenyan.kenyanews.providers.kenyanewsdata" />
+
         <activity
-            android:name="com.somekenyan.kenyanews.RSSActivity">
-        </activity>
-        <activity android:name="com.somekenyan.kenyanews.FullArticle"/>
-        <activity android:name="com.somekenyan.kenyanews.NewsIconsActivity"/>
-        
-        <provider android:authorities="com.somekenyan.kenyanews.providers.kenyanewsdata" android:name=".providers.KenyaNewsProvider"></provider>       
+            android:name=".NewsMenuActivity"
+            android:label="@string/title_activity_news_menu"></activity>
     </application>
 
 </manifest>

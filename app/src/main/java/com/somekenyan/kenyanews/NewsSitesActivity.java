@@ -1,6 +1,7 @@
 package com.somekenyan.kenyanews;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,6 +47,8 @@ public class NewsSitesActivity extends Activity {
 	private static final int TAG_URL =1;
 	private ArrayList<String > array;
 
+	public static final String NEWSMENU = "newsmenumap";
+	private Map newsSitesMap;
     private String [] newsSites;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class NewsSitesActivity extends Activity {
 
         setContentView(R.layout.activity_newssites);
 
+		newsSitesMap = RSSLinks.supported_Sites();
         newsSites = RSSLinks.supported_Sites().keySet().toArray(new String[0]);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.newssites_list_item, newsSites);
 
@@ -66,7 +70,7 @@ public class NewsSitesActivity extends Activity {
                 TextView tv = (TextView) adapterView.getChildAt(i);
                 Map m = RSSLinks.supported_Sites().get(tv.getText());
                 String [] keys = (String[]) m.keySet().toArray(new String[0]);
-                new AsyncLoadXML().execute(String.valueOf(m.get(keys[0])));
+                new AsyncLoadXML().execute(tv.getText().toString());
 
             }
         });
@@ -138,11 +142,13 @@ k
 
 	private class AsyncLoadXML extends AsyncTask<String, Void, RSSList>{
 		ProgressDialog dialog = new ProgressDialog(NewsSitesActivity.this);
-		
+
+		LinkedHashMap m;
 		@Override
 		protected RSSList doInBackground(String... params) {
 			RSSParser myparser = new RSSParser();
-			return myparser.parseXML(params[0]);
+            m = (LinkedHashMap) newsSitesMap.get(params[0]);
+            return myparser.parseXML(params[0]);
 		}
 
 	    @Override
@@ -161,8 +167,9 @@ k
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			Bundle bundle = new Bundle();
-			bundle.putSerializable("feed", result);			 
-			Intent intent = new Intent(NewsSitesActivity.this, NewsIconsActivity.class);
+			bundle.putSerializable("feed", result);
+            bundle.putSerializable(NEWSMENU, m);
+			Intent intent = new Intent(NewsSitesActivity.this, NewsMenuActivity.class);
 			intent.putExtras(bundle);
 			dialog.dismiss();
 			startActivity(intent);
