@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="/home/rookie/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_5b0a2fb3a3f15480ce2eb8645cb095e306b12af8.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/rookie/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
         jumboMode="false"
         optimize="true"

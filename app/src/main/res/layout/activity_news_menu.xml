@@ -8,11 +8,25 @@
 
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+     <FrameLayout
+         android:id="@+id/container"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ListView
+            android:id="@+id/menu_listView"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </ListView>
+
+    </LinearLayout>
+    </FrameLayout>
     <!-- The drawer is given a fixed width in dp and extends the full height of
          the container. -->
     <fragment

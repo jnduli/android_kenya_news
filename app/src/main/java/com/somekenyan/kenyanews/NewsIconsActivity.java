@@ -104,7 +104,7 @@ public class NewsIconsActivity extends FragmentActivity{
 	            Bundle savedInstanceState) {
 	        ViewGroup listItem = (ViewGroup) inflater.inflate(
 	                R.layout.list_item, container, false);
-	        ImageView tvImage = (ImageView) listItem.findViewById(R.id.imageView1);
+	        ImageView tvImage = (ImageView) listItem.findViewById(R.id.article_image);
 			TextView tvTitle = (TextView) listItem.findViewById(R.id.title);
 			TextView tvDate = (TextView) listItem.findViewById(R.id.date);
 			final Button more = (Button) listItem.findViewById(R.id.more_button);

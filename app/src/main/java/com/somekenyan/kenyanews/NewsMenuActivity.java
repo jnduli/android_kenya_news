@@ -5,9 +5,12 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.somekenyan.kenyanews.RSS.RSSList;
+import com.somekenyan.kenyanews.RSS.RSSParser;
+import com.somekenyan.kenyanews.RSS.RssListAdapter;
+import com.somekenyan.kenyanews.data.RSSLinks;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,12 +43,23 @@ public class NewsMenuActivity extends Activity
      */
     private CharSequence mTitle;
     private LinkedHashMap newsMenu;
+    ListView rssList;
+    RssListAdapter rssListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        newsMenu = (LinkedHashMap) (this.getIntent().getExtras()).getSerializable(NewsSitesActivity.NEWSMENU);
+
+        newsMenu = (LinkedHashMap) RSSLinks.supported_Sites().get(this.getIntent().getExtras().getSerializable(NewsSitesActivity.NEWSMENU));
+        //newsMenu = (LinkedHashMap) (this.getIntent().getExtras()).getSerializable(NewsSitesActivity.NEWSMENU);
         setContentView(R.layout.activity_news_menu);
+
+        rssList = (ListView) findViewById(R.id.menu_listView);
+        RSSList rl = (RSSList) getIntent().getExtras().getSerializable(NewsSitesActivity.FIRSTRSSMENU);
+        Log.d("RSSLIst", "Random things I think");
+        Log.d("RSSLIst", rl.getList().toString());
+        rssListAdapter = new RssListAdapter(rl, this);
+        rssList.setAdapter(rssListAdapter);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -66,7 +86,34 @@ public class NewsMenuActivity extends Activity
         return menu;
     }
 
+    public RSSList getRssList(int number){
+        String [] menuItems = getMenuItems();
+        final String url = (String) newsMenu.get(menuItems[number]);
+        //TODO load RSS list into the main bar
+        final RSSList[] rssList = {null};
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    rssList[0] = new RSSParser().parseXML(url);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        return rssList[0];
+    }
     public void onSectionAttached(int number) {
+        String [] menuItems = getMenuItems();
+        String url = (String) newsMenu.get(menuItems[number]);
+        mTitle = menuItems[number];
+        //TODO load RSS list into the main bar
+        new SectionRSSSetter().execute(number);
+        //RSSList rssList = new RSSParser().parseXML(url);
+        //rssListAdapter.setRssList(rssList);
+/**
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
@@ -78,6 +125,7 @@ public class NewsMenuActivity extends Activity
                 mTitle = getString(R.string.title_section3);
                 break;
         }
+ **/
     }
 
     public void restoreActionBar() {
@@ -124,6 +172,34 @@ public class NewsMenuActivity extends Activity
             super.onAttach(activity);
             ((NewsMenuActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+
+    public class SectionRSSSetter extends AsyncTask<Integer, Void, RSSList>{
+        ProgressDialog dialog = new ProgressDialog(NewsMenuActivity.this); @Override
+	    protected void onPreExecute() {
+	        //or show splash here!
+	        dialog.setMessage("Loading!");
+	        dialog.show();
+	        super.onPreExecute();
+	    }
+
+        @Override
+        protected RSSList doInBackground(Integer... integers) {
+            String [] menuItems = getMenuItems();
+            String url = (String) newsMenu.get(menuItems[integers[0]]);
+            Log.d("RSSLIst", url);
+            //TODO load RSS list into the main bar
+            RSSList rssList = new RSSParser().parseXML(url);
+            return rssList;
+        }
+
+        @Override
+        protected void onPostExecute(RSSList rssList) {
+            super.onPostExecute(rssList);
+            rssListAdapter.setRssList(rssList);
+            NewsMenuActivity.this.rssList.setAdapter(rssListAdapter);
+            dialog.dismiss();
         }
     }
 

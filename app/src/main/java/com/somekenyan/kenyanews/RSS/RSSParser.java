@@ -15,6 +15,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import android.content.pm.FeatureInfo;
+import android.util.Log;
 
 public class RSSParser {
 	RSSList rsl = new RSSList();
@@ -31,6 +32,7 @@ public class RSSParser {
 			NodeList nl = doc.getElementsByTagName("item");
 			for(int i=0; i<nl.getLength(); i++){
 				Node currentNode = nl.item(i);
+				Log.d("RSSLIst", currentNode.getNodeName());
 				RSSItem item = new RSSItem(currentNode);
 				rsl.addItem(item);
 			}

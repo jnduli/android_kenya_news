@@ -48,6 +48,7 @@ public class NewsSitesActivity extends Activity {
 	private ArrayList<String > array;
 
 	public static final String NEWSMENU = "newsmenumap";
+    public static final String FIRSTRSSMENU = "firstrssmenu";
 	private Map newsSitesMap;
     private String [] newsSites;
 	@Override
@@ -144,17 +145,27 @@ k
 		ProgressDialog dialog = new ProgressDialog(NewsSitesActivity.this);
 
 		LinkedHashMap m;
+		String selection;
+		RSSList rssList;
 		@Override
 		protected RSSList doInBackground(String... params) {
 			RSSParser myparser = new RSSParser();
             m = (LinkedHashMap) newsSitesMap.get(params[0]);
-            return myparser.parseXML(params[0]);
+			//loading data for firs rss menu
+			String [] menu = (String[]) m.keySet().toArray(new String[0]);
+			//TODO load RSS list into the main bar
+			Log.d("RSSLIst", (String) m.get(menu[0]));
+			rssList = myparser.parseXML((String) m.get(menu[0]));
+			selection = params[0];
+            Log.d("RSSLIst", rssList.getList().toString());
+            //return myparser.parseXML(params[0]);
+			return rssList;
 		}
 
 	    @Override
 	    protected void onPreExecute() {
 	        //or show splash here!
-	        dialog.setMessage("Cool Progressbar!");
+	        dialog.setMessage("Loading!");
 	        dialog.show();
 	        super.onPreExecute();
 	    }
@@ -168,7 +179,8 @@ k
 			super.onPostExecute(result);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("feed", result);
-            bundle.putSerializable(NEWSMENU, m);
+            bundle.putSerializable(NEWSMENU, selection);
+			bundle.putSerializable(FIRSTRSSMENU, rssList);
 			Intent intent = new Intent(NewsSitesActivity.this, NewsMenuActivity.class);
 			intent.putExtras(bundle);
 			dialog.dismiss();

@@ -38,10 +38,25 @@ public class RSSLinks {
         return nationMap;
     }
 
+
+    public static String STANDARDMEDIA_LATEST="http://www.standardmedia.co.ke/rss/headlines.php";
+    public static String STANDARDMEDIA_KENYA_NEWS="http://www.standardmedia.co.ke/rss/kenya.php";
+    public static String STANDARDMEDIA_WORLD_NEWS="http://www.standardmedia.co.ke/rss/world.php";
+    public static String STANDARDMEDIA_POLITICS="http://www.standardmedia.co.ke/rss/politics.php";
+    public static String STANDARDMEDIA_OPINTION= "http://www.standardmedia.co.ke/rss/opinion.php";
+    public static String STANDARDMEDIA_SPORTS="http://www.standardmedia.co.ke/rss/sports.php";
+    public static String STANDARDMEDIA_BUSINESS="http://www.standardmedia.co.ke/rss/business.php";
+    public static String STANDARDMEDIA_COLUMNISTS="http://www.standardmedia.co.ke/rss/columnists.php";
     //TODO Standard Media RSS Links
     public static Map<String, String> standard_createMap(){
         Map<String, String> stdMap = new LinkedHashMap<String, String>();
-        stdMap.put("Latest","Links");
+        stdMap.put("Latest",STANDARDMEDIA_LATEST);
+        stdMap.put("Kenya", STANDARDMEDIA_KENYA_NEWS);
+        stdMap.put("Politics", STANDARDMEDIA_POLITICS);
+        stdMap.put("World",STANDARDMEDIA_WORLD_NEWS);
+        stdMap.put("Business",STANDARDMEDIA_BUSINESS);
+        stdMap.put("Sports", STANDARDMEDIA_SPORTS);
+        stdMap.put("Opinion", STANDARDMEDIA_OPINTION);
         return stdMap;
     }
 
