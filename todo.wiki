@@ -1,0 +1,6 @@
+== Todo ==
+- [ ] Readme implementation of KNews to view full news
+- [ ] Make Standard news work with KNews
+- [ ] Improve color pallete for application
+- [ ] App title should work with logo
+- [ ] Each different page should have relevant title page
