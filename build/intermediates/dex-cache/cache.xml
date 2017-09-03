@@ -2,13 +2,49 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/home/rookie/projects/dev/github/android_kenya_news/app/libs/jsoup-1.7.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7e275ba05aa380ca254f72d0c0ffebaedc3adcf">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/transforms/dex/debug/folders/1000/2/jsoup-1.7.2_3e82e579002a5e35d802cbefd3f5c4ec9c0bf0b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_535149a77af2519b64c5a18e3b55359d1312a7ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4881d3f5d7842139fab34d47d7f57c587c37aed">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_16b22933ae5a74c4908d0e21e9ecc252d654d54c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/rookie/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-v4-18.0.0_dd56f53a0159475cd3a59ee670e74383e0107eb6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/rookie/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_5b0a2fb3a3f15480ce2eb8645cb095e306b12af8.jar" />
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_5b0a2fb3a3f15480ce2eb8645cb095e306b12af8/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -27,6 +63,15 @@
         revision="25.0.0"
         sha1="d7e275ba05aa380ca254f72d0c0ffebaedc3adcf">
         <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/pre-dexed/debug/jsoup-1.7.2_3e82e579002a5e35d802cbefd3f5c4ec9c0bf0b6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/rookie/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/home/rookie/projects/dev/github/android_kenya_news/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_5b0a2fb3a3f15480ce2eb8645cb095e306b12af8.jar" />
     </item>
 
 </items>
